@@ -1,0 +1,21 @@
+[package]
+name = "kalkulator-cutting"
+version = "0.1.0"
+edition = "2024"
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[[bin]]
+name = "kalkulator-cutting"
+path = "src/main.rs"
+
+[dependencies]
+eframe = "0.34.1"
+egui_extras = "0.34.1"
+log = "0.4.29"
+
+[target.'cfg(target_arch = "wasm32")'.dependencies]
+wasm-bindgen = "0.2.118"
+wasm-bindgen-futures = "0.4.68"
+web-sys = "0.3.95"

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My egui App</title>
+    <style>
+        html, body {
+            margin: 0;
+            overflow: hidden;
+            background: #1a1a2e;
+        }
+        canvas {
+            display: block;
+            width: 100vw;
+            height: 100vh;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="the_canvas_id"></canvas>
+
+    <script type="module">
+        import init, { WebHandle } from "./my_egui_app.js";
+
+        async function main() {
+            await init(); // load WASM
+            const canvas = document.getElementById("the_canvas_id");
+            const handle = new WebHandle();
+            await handle.start(canvas);
+        }
+
+        main().catch(console.error);
+    </script>
+</body>
+</html>
