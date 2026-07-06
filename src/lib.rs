@@ -2,11 +2,11 @@
 #![cfg(target_arch = "wasm32")]
 
 mod app;
-use app::MyApp;
+mod cutting_report;
+use app::CuttingSimulatorApp;
 
 use wasm_bindgen::prelude::*;
 
-#[derive(Clone)]
 #[wasm_bindgen]
 pub struct WebHandle {
     runner: eframe::WebRunner,
@@ -34,7 +34,7 @@ impl WebHandle {
             .start(
                 canvas,
                 eframe::WebOptions::default(),
-                Box::new(|cc| Ok(Box::new(MyApp::new(cc)))),
+                Box::new(|cc| Ok(Box::new(CuttingSimulatorApp::new(cc)))),
             )
             .await
     }

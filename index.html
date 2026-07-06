@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My egui App</title>
+    <title>Kalkulator Cutting</title>
     <style>
         html, body {
             margin: 0;
@@ -16,21 +16,17 @@
             height: 100vh;
         }
     </style>
+    <link data-trunk rel="rust" data-wasm-opt="z" data-target-name="kalkulator_cutting" />
 </head>
 <body>
     <canvas id="the_canvas_id"></canvas>
 
     <script type="module">
-        import init, { WebHandle } from "./my_egui_app.js";
-
-        async function main() {
-            await init(); // load WASM
+        window.addEventListener("TrunkApplicationStarted", () => {
+            const handle = new window.wasmBindings.WebHandle();
             const canvas = document.getElementById("the_canvas_id");
-            const handle = new WebHandle();
-            await handle.start(canvas);
-        }
-
-        main().catch(console.error);
+            handle.start(canvas);
+        });
     </script>
 </body>
 </html>
